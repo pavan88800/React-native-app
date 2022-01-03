@@ -1,5 +1,5 @@
 import React from 'react'
-import {View, Text} from 'react-native'
+import {StatusBar} from 'react-native'
 import {NavigationContainer} from '@react-navigation/native'
 import {createNativeStackNavigator} from '@react-navigation/native-stack'
 import Home from './src/screens/Home'
@@ -10,6 +10,7 @@ const Stack = createNativeStackNavigator()
 const App = () => {
   return (
     <NativeBaseProvider>
+      <StatusBar backgroundColor='#1b262c' />
       <NavigationContainer>
         <Stack.Navigator initialRouteName='Home'>
           <Stack.Screen

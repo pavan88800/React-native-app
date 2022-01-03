@@ -11,7 +11,7 @@ import {
   WarningOutlineIcon,
   Stack,
 } from 'native-base'
-import {v4 as uuidv4} from 'uuid'
+import shortid from 'shortid'
 import AsyncStorage from '@react-native-community/async-storage'
 const Add = ({navigation}) => {
   const [name, setName] = useState('')
@@ -23,12 +23,12 @@ const Add = ({navigation}) => {
         return alert('Please add both fields')
       }
       const seasonToAdd = {
-        id: uuidv4(),
+        id: shortid.generate(),
         name,
         description,
         isChecked: false,
       }
-
+      console.log(seasonToAdd, 'seasonToAdd')
       // get and setItem in localstorge
       const storedValue = await AsyncStorage.getItem('@todo')
       const prevList = await JSON.parse(storedValue)

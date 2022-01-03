@@ -5,12 +5,9 @@ import {
   AddIcon,
   Box,
   Button,
-  Container,
   Heading,
-  Center,
   HStack,
   Stack,
-  Icon,
   Checkbox,
 } from 'native-base'
 import {useIsFocused} from '@react-navigation/native'
@@ -62,31 +59,18 @@ const Home = ({navigation, route}) => {
   }
 
   return (
-    <Box style={styles.container}>
+    <View style={styles.container}>
+      <Heading textAlign='center' mb='10' style={styles.heading}>
+        List of Todo
+      </Heading>
       <ScrollView contentContainerStyle={{flexGrow: 1}}>
-        <Button
-          style={{
-            backgroundColor: '#5067FF',
-            height: 70,
-            width: 70,
-            borderRadius: 70 / 2,
-            marginLeft: 300,
-            marginTop: 550,
-            position: 'absolute',
-          }}
-          onPress={() => navigation.navigate('Add')}>
-          <AddIcon name='add' size='6' color='#fff' />
-        </Button>
         {ListOfTodo?.length === 0 ? (
-          <Container>
+          <View>
             <Heading style={styles.heading}>Todo is Empty</Heading>
-          </Container>
+          </View>
         ) : (
           <>
-            <Stack space={3} alignItems='center'>
-              <Heading textAlign='center' mb='10' style={styles.heading}>
-                List of Todo
-              </Heading>
+            <Stack space={3} alignItems='center' mt='4'>
               {ListOfTodo?.map(item => (
                 <HStack space={14} alignItems='center' key={item?.id}>
                   <Text style={styles.seasonName}>{item?.name}</Text>
@@ -104,6 +88,7 @@ const Home = ({navigation, route}) => {
                     colorScheme='green'
                     onPress={() => markComplete(item?.id)}
                     isChecked={item?.isChecked}
+                    accessibilityLabel='This is a dummy checkbox'
                   />
                 </HStack>
               ))}
@@ -111,7 +96,20 @@ const Home = ({navigation, route}) => {
           </>
         )}
       </ScrollView>
-    </Box>
+      <Button
+        style={{
+          backgroundColor: '#5067FF',
+          height: 60,
+          width: 60,
+          borderRadius: 60 / 2,
+          marginLeft: 320,
+          marginTop: 550,
+          position: 'absolute',
+        }}
+        onPress={() => navigation.navigate('Add')}>
+        <AddIcon name='add' size='6' color='#fff' />
+      </Button>
+    </View>
   )
 }
 
